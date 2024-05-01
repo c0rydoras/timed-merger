@@ -66,7 +66,7 @@ git merge backend/main --allow-unrelated-histories -m "chore: merge backend"
 
 _log "Adding remotes"
 git remote add --fetch origin "git@github.com:$TARGET_REPOSITORY"
-git remote add upstream "git@github.com:$UPSTREAM_REPOSITORY"
+git remote add upstream "https://github.com/$UPSTREAM_REPOSITORY"
 
 _log "Setting upstream to origin main"
 git branch --set-upstream-to origin main
