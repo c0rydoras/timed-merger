@@ -28,7 +28,9 @@ git clone git@github.com:adfinis/timed-frontend "$tmp_frontend"
 git clone git@github.com:adfinis/timed-backend "$tmp_backend"
 
 _log "Rewrite git history so files are placed in $_monorepo_path/frontend"
-cd "$tmp_frontend" && git filter-branch --index-filter \
+
+cd "$tmp_frontend" || exit 1
+git filter-branch --index-filter \
   'git ls-files -s | sed "s-\t\"*-&frontend/-" |
    GIT_INDEX_FILE=$GIT_INDEX_FILE.new \
    git update-index --index-info &&
@@ -37,7 +39,9 @@ cd "$tmp_frontend" && git filter-branch --index-filter \
 cd - || exit 1
 
 _log "Rewrite git history so files are placed in $_monorepo_path/backend"
-cd "$tmp_backend" && git filter-branch --index-filter \
+
+cd "$tmp_backend" || exit 1
+git filter-branch --index-filter \
   'git ls-files -s | sed "s-\t\"*-&backend/-" |
    GIT_INDEX_FILE=$GIT_INDEX_FILE.new \
    git update-index --index-info &&
@@ -45,7 +49,8 @@ cd "$tmp_backend" && git filter-branch --index-filter \
 
 cd - || exit 1
 
-mkdir timed && cd timed || exit 1
+mkdir timed
+cd timed || exit 1
 
 _log "Creating monorepo in $_monorepo_path"
 git init --initial-branch main
