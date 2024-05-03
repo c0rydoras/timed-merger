@@ -5,6 +5,7 @@ Bash Script to merge
 
 - [Timed Backend](https://github.com/adfinis/timed-backend)
 - [Timed Frontend](https://github.com/adfinis/timed-frontend)
+- [Timed Helm Chart](https://github.com/adfinis/helm-charts/tree/main/charts/timed)
 
 ## Requirements
 - coreutils
